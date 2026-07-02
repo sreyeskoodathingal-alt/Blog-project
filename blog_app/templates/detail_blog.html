@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Detail Page</h1>
+
+    <h1>{{blog.title}}</h1>
+    <p>{{blog.content}}</p>
+    <p>{{blog.year}}</p>
+    <h2>{{blog.created_at}}</h2>
+
+    {% if blog.image %}
+    <img src="{{ blog.image.url}}" alt="Blog image" style="height: 300px; width: 400px;">
+    {% endif %}
+
+    <a href="{% url 'update_blog' blog.id %}">Update your Blog</a><br><br>
+    <a href="{% url 'delete_blog' blog.id %}">Delete</a><br><br>
+
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <label for=""> Name</label>
+    <input type="text" name="name"> <br><br>
+
+    <label for="">Type your command</label>
+    <textarea name="command" id=""></textarea>
+
+    <br><br>
+    <input type="submit" value="save">
+
+</form>
+
+    {% for i in command %}
+    <hr>
+
+    <h4>{{i.name}}</h4>
+    <h4>{{blog.command}}</h4>
+    <h4>{{i.created_at}}</h4>
+
+    <hr>
+    {% endfor %}
+
+</body>
+</html>
